@@ -3,6 +3,8 @@ package tn.esprit.templateexamen.entite;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -12,15 +14,18 @@ import java.util.Set;
 @Builder
 @Getter
 @Setter
-public class Participant {
+public class Produit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idPart;
-    private String nom;
-    private String prenom;
-    @Enumerated(EnumType.STRING)
-    private Tache tache;
+    private Long idProduit;
 
-    @ManyToMany(mappedBy="participants", cascade = CascadeType.ALL)
-    private Set<Evenement> evenements;
+    private String identifiant;
+
+    @Enumerated(EnumType.STRING)
+    private Categorie categorieProd;
+
+    @ManyToMany(mappedBy = "produits")
+    private List<Colis> colis;
+
+    // Getters et Setters
 }
